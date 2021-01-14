@@ -1,0 +1,33 @@
+{{ define "top/index" }}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>The Gopher Network</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <h1>The Gopher Network</h1>
+    <img id="logo" src="/static/gcp-gopher.svg" alt="gopher" width="100">
+
+    {{ with .params.Notice }}
+        <div id="notice">{{ . }}</div>
+    {{ end }}
+
+    <form action="/" method="post">
+        <div>Name: <input name="name"></div>
+        <div>Message: <input name="message"></div>
+        <input type="submit">
+    </form>
+
+    {{ with .params.Posts }}
+        <ol>
+            {{ range . }}
+                <li><cite>{{.Author}}</cite><p>{{.Message}}</p></li>
+            {{ end }}
+        </ol>
+    {{ end }}
+</body>
+</html>
+{{ end }}
